@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>wgan</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>wganANONYMIZED</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7520,14 +7520,14 @@ a.anchor-link {
 <h1 id="Wasserstein-GAN:-An-Annotated-Implementation">Wasserstein GAN: An Annotated Implementation<a class="anchor-link" href="#Wasserstein-GAN:-An-Annotated-Implementation">¶</a></h1><p><em>Deep Learning Final Project - 11/25/2025 - Illinois Tech</em></p>
 <p><em><strong>Authors:</strong></em></p>
 <ul>
-<li><em>Alberto Mateo</em></li>
-<li><em>Anna Monso</em></li>
-<li><em>Judit Martín Sesé</em></li>
-<li><em>Hernan Garcia Quijano</em></li>
+<li><em>[ANONYMOUS AUTHOR]</em></li>
+<li><em>[ANONYMOUS AUTHOR]</em></li>
+<li><em>[ANONYMOUS AUTHOR]</em></li>
+<li><em>[ANONYMOUS AUTHOR]</em></li>
 </ul>
 <hr/>
 <h2 id="Introduction:-Why-Wasserstein?">Introduction: Why Wasserstein?<a class="anchor-link" href="#Introduction:-Why-Wasserstein?">¶</a></h2><p><em>Generative Adversarial Networks (GANs) have demonstrated impressive results in unsupervised learning, yet they are notoriously difficult to train</em>. <em>Standard GAN training is "delicate and unstable," often requiring a precise balance between the discriminator and generator to prevent vanishing gradients or mode collapse</em>.</p>
-<p>The paper <em><strong>"Wasserstein GAN"</strong></em> (Arjovsky et al., 2017) argues that these issues stem from the choice of distance metric used to measure the gap between the real data distribution ($\mathbb{P}_r$) and the model distribution ($\mathbb{P}_\theta$). <em>Traditional approaches, which often optimize proxies for the Kullback-Leibler (KL) or Jensen-Shannon (JS) divergences, fail when these distributions are supported by low-dimensional manifolds that do not overlap</em> . <em>In these disjoint cases, the gradient often vanishes or becomes undefined, halting learning</em>.</p>
+<p>The paper [ANONYMOUS PAPER] argues that these issues stem from the choice of distance metric used to measure the gap between the real data distribution ($\mathbb{P}_r$) and the model distribution ($\mathbb{P}_\theta$). <em>Traditional approaches, which often optimize proxies for the Kullback-Leibler (KL) or Jensen-Shannon (JS) divergences, fail when these distributions are supported by low-dimensional manifolds that do not overlap</em> . <em>In these disjoint cases, the gradient often vanishes or becomes undefined, halting learning</em>.</p>
 <h3 id="The-Solution:-Earth-Mover-Distance">The Solution: Earth-Mover Distance<a class="anchor-link" href="#The-Solution:-Earth-Mover-Distance">¶</a></h3><p>The authors propose using the <em><strong>Earth-Mover (EM) distance</strong></em> (also known as Wasserstein-1). <em>Intuitively, if we view probability distributions as piles of earth, the EM distance is the minimum cost to transport the mass from one pile to match the other</em> .</p>
 <p><em>Unlike JS or KL divergences, the EM distance is continuous and differentiable almost everywhere, even when distributions are disjoint</em>. <em>This provides smooth, usable gradients for the generator throughout the training process</em>.</p>
 <h3 id="Key-Contributions-Annotated-in-this-Project">Key Contributions Annotated in this Project<a class="anchor-link" href="#Key-Contributions-Annotated-in-this-Project">¶</a></h3><p>In this notebook, we implement the <em><strong>WGAN</strong></em> algorithm to demonstrate its two primary claims:</p>
@@ -7602,21 +7602,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Model-Architecture-(Analysis-&amp;-Synthesis)">2. Model Architecture (Analysis &amp; Synthesis)<a class="anchor-link" href="#2.-Model-Architecture-(Analysis-&amp;-Synthesis)">¶</a></h2><p>This section explains the architecture of the Wasserstein GAN, breaking the model into its individual components and then synthesizing how they work together to approximate and minimize the Earth Mover distance. All explanations follow the structure of the WGAN paper.</p>
+<h2 id="2.-Model-Architecture-(Analysis-&amp;-Synthesis)">2. Model Architecture (Analysis &amp; Synthesis)<a class="anchor-link" href="#2.-Model-Architecture-(Analysis-&amp;-Synthesis)">¶</a></h2><p>This section explains the architecture of the Wasserstein GAN, breaking the model into its individual components and then synthesizing how they work together to approximate and minimize the Earth Mover distance.</p>
 <hr/>
 <h4 id="2.1-Analysis:-Generator-and-Critic-Architectures">2.1 Analysis: Generator and Critic Architectures<a class="anchor-link" href="#2.1-Analysis:-Generator-and-Critic-Architectures">¶</a></h4><h5 id="Generator-Architecture">Generator Architecture<a class="anchor-link" href="#Generator-Architecture">¶</a></h5><p>The generator implements the mapping $g_\theta : Z \to X$, transforming noise vectors into synthetic samples. The paper validates that simple MLPs perform well under the Wasserstein loss, even with small hidden layers.</p>
-<p><strong>Diagram of the Generator</strong></p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8fa2264f">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Analysis:</strong></p>
 </div>
 </div>
 </div>
@@ -7627,8 +7615,14 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><img alt="Analysis Diagram" src="Analysis_diagram.png"/></p>
-</div>
+<center>
+<b>Diagram of the Generator</b>
+<center>
+<img alt="Analysis Diagram" src="Analysis_diagram.png" style="display: block; margin: 0 auto;"/>
+<center>
+Figure 1: This diagram shows the forward pass through both networks. The generator transforms 2D noise through two ReLU hidden layers to produce synthetic 2D data points. The critic processes real or generated data through two ReLU hidden layers to output a scalar score (no sigmoid, as required for Wasserstein formulation).
+</center>
+</center></center></div>
 </div>
 </div>
 </div>
@@ -7680,8 +7674,24 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h4 id="Critic-Architecture:">Critic Architecture:<a class="anchor-link" href="#Critic-Architecture:">¶</a></h4><p>The critic implements the function class f_w that approximates the supremum in the Kantorovich Rubinstein dual formulation of the Earth Mover distance (Section 3, equation (2)) .</p>
 <p>The key architectural rule is that the critic outputs a real valued score and therefore does not have a sigmoid output. This is consistent with Figure 2 and Algorithm 1 in the paper.</p>
-<p><img alt="Critic Diagram" src="Critic_diagram.png"/></p>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=baaf83c4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<center>
+<b>Diagram of the Critic</b>
+<center>
+<img alt="Critic Diagram" src="Critic_diagram.png" style="display: block; margin: 0 auto;"/>
+<center>
+Figure 2: The critic architecture. It accepts input data (real or generated) and passes it through hidden layers with ReLU activations. Crucially, the final layer is a linear transformation with no sigmoid activation, outputting a raw scalar score f_w(x) required for the Wasserstein distance calculation.
+</center>
+</center></center></div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6cbff654">
@@ -7737,9 +7747,24 @@ a.anchor-link {
 <h5 id="Weight-Clipping">Weight Clipping<a class="anchor-link" href="#Weight-Clipping">¶</a></h5><p>After every critic gradient update, all parameters $w$ are projected into a fixed interval:</p>
 <p>$$w \leftarrow \text{clip}(w, -c, c)$$</p>
 <p>This forces the critic to lie in a compact subset of parameter space, which guarantees it is $K$-Lipschitz for some constant $K$ determined by the clipping value $c$. Although crude, this approximation is sufficient for the dual formulation to hold and for the Wasserstein estimate to remain stable.</p>
-<p><strong>Diagram</strong></p>
-<p><img alt="Lipschitz Diagram" src="Lipschitz_constrain_diagram.png"/></p>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a701f15c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<center>
+<b>Diagram of the Lipschitz Constraint</b>
+<center>
+<img alt="Lipschitz Diagram" src="Lipschitz_constrain_diagram.png" style="display: block; margin: 0 auto;"/>
+<center>
+Figure 3: To enforce the Lipschitz constraint required by the Wasserstein distance, the WGAN algorithm clips the weights of the critic after every gradient update.
+</center>
+</center></center></div>
 </div>
 </div>
 </div>
@@ -7901,61 +7926,33 @@ Importantly, no clipping is applied to the generator.</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="2.5-Synthesis:-How-the-Parts-Come-Together">2.5 Synthesis: How the Parts Come Together<a class="anchor-link" href="#2.5-Synthesis:-How-the-Parts-Come-Together">¶</a></h3><p>The full WGAN pipeline combines the generator, critic, loss functions, and training loop into a single system that approximates and minimizes the Earth Mover distance between the real distribution $P_r$ and the model distribution $P_\theta$. The diagram below summarizes the flow of information through the model.</p>
-<p><img alt="Synthesis_diagram" src="Synthesis_diagram.png"/></p>
-<h4 id="Unified-Explanation">Unified Explanation<a class="anchor-link" href="#Unified-Explanation">¶</a></h4><ol>
-<li><p><strong>Generator produces fake samples</strong><br/>
-Noise vectors $ z \sim p(z) $ are transformed by the generator into fake data $ g_\theta(z) $.<br/>
-These samples represent the model distribution $P_\theta$.</p>
-</li>
-<li><p><strong>Critic processes both real and fake data</strong><br/>
-The critic $ f_w $ outputs real valued scores for:</p>
-<ul>
-<li>real data $ f_w(x) $</li>
-<li>fake data $ f_w(g_\theta(z)) $</li>
-</ul>
-<p>Since the critic has no sigmoid, its output is a scalar that can freely increase or decrease to approximate the optimal Kantorovich potential.</p>
-</li>
-<li><p><strong>Critic estimates the Wasserstein distance</strong><br/>
-The critic maximizes the expression</p>
-<p>$$
-\mathbb{E}_{x \sim P_r}[f_w(x)] - \mathbb{E}_{z \sim p(z)}[f_w(g_\theta(z))].
-$$</p>
-<p>This is exactly the dual form of the Earth Mover distance from equation (2) in the paper:</p>
-<p>$$
-W(P_r, P_\theta) = 
-\sup_{f \,\text{is 1-Lipschitz}} 
-\left( 
-\mathbb{E}_{x \sim P_r}[f(x)] 
-- \mathbb{E}_{x \sim P_\theta}[f(x)]
-\right).
-$$</p>
-<p>Weight clipping ensures $ f_w $ remains in a K Lipschitz function class.</p>
-</li>
-<li><p><strong>Critic is updated multiple times</strong><br/>
-To approximate the supremum in the dual formulation, the critic is trained for <code>ncritic</code> steps before each generator update.<br/>
-This allows it to closely estimate the Wasserstein distance.</p>
-</li>
-<li><p><strong>Generator is updated once per cycle</strong><br/>
-After the critic is near optimal for its current parameters, the generator performs one update to minimize</p>
-<p>$$
-L_{\text{gen}} = -\mathbb{E}_{z \sim p(z)}[f_w(g_\theta(z))].
-$$</p>
-<p>Reducing this value means reducing the critic’s estimate of the EM distance, which pushes the generated distribution toward the real one.</p>
-</li>
-<li><p><strong>Gradients flow through the critic into the generator</strong><br/>
-Although the critic is not trained during the generator update, its gradients provide the direction in which the generator must move to decrease the Wasserstein distance.</p>
-</li>
-</ol>
-<h4 id="How-the-Pipeline-Implements-Optimal-Transport">How the Pipeline Implements Optimal Transport<a class="anchor-link" href="#How-the-Pipeline-Implements-Optimal-Transport">¶</a></h4><p>The entire system forms a neural approximation of the optimal transport problem. The critic attempts to solve the dual formulation of the Earth Mover distance by learning a 1-Lipschitz function that best separates real and fake data. The generator then moves samples in the direction that reduces this separation.</p>
-<p>As the training loop alternates:</p>
-<ul>
-<li>the critic estimates $ W(P_r, P_\theta) $,</li>
-<li>the generator minimizes that estimate.</li>
-</ul>
-<p>This creates an end to end procedure in which gradient based optimization performs stochastic descent on the Wasserstein distance itself. The result is a stable learning process with meaningful, smooth gradients that do not vanish even when the real and model distributions initially lie on// filepath: c:\Users\herna\Desktop\dl-wgan\wgan.ipynb
-// ...existing code...</p>
-<h3 id="2.5-Synthesis:-How-the-Parts-Come-Together">2.5 Synthesis: How the Parts Come Together<a class="anchor-link" href="#2.5-Synthesis:-How-the-Parts-Come-Together">¶</a></h3><p>The full WGAN pipeline combines the generator, critic, loss functions, and training loop into a single system that approximates and minimizes the Earth Mover distance between the real distribution $P_r$ and the model distribution $P_\theta$. The diagram below summarizes the flow of information through the model.</p>
-<p><img alt="Synthesis_diagram" src="Synthesis_diagram.png"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dd5dea1c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<center>
+<b>Synthesis Diagram: Complete WGAN Pipeline</b>
+<center>
+<img alt="Synthesis Diagram" src="Synthesis_diagram.png" style="display: block; margin: 0 auto;"/>
+<center>
+Figure 4: The complete WGAN pipeline showing how the generator, critic, loss functions, and training loop work together to approximate and minimize the Earth Mover distance. The generator transforms noise into synthetic samples, the critic evaluates both real and fake data, and the alternating training updates ensure stable convergence to the optimal transport solution.
+</center>
+</center></center></div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54470a08">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h4 id="Unified-Explanation">Unified Explanation<a class="anchor-link" href="#Unified-Explanation">¶</a></h4><ol>
 <li><p><strong>Generator produces fake samples</strong><br/>
 Noise vectors $ z \sim p(z) $ are transformed by the generator into fake data $ g_\theta(z) $.<br/>
@@ -8007,7 +8004,6 @@ Although the critic is not trained during the generator update, its gradients pr
 <li>the generator minimizes that estimate.</li>
 </ul>
 <p>This creates an end to end procedure in which gradient based optimization performs stochastic descent on the Wasserstein distance itself. The result is a stable learning process with meaningful, smooth gradients that do not vanish even when the real and model distributions initially lie on disjoint low dimensional manifolds.</p>
-<p>This completes the Synthesis section and ties together all architectural and theoretical components of WGAN.</p>
 </div>
 </div>
 </div>
@@ -9077,7 +9073,7 @@ To keep the problem simple and CPU-friendly, we:</p>
 <li>Used only 5,000 training examples.</li>
 </ul>
 <p>This makes the problem easier to train on a laptop and to visually inspect the generated images.</p>
-<h3 id="Miniaturized-WGAN-Model">Miniaturized WGAN Model<a class="anchor-link" href="#Miniaturized-WGAN-Model">¶</a></h3><p>The original WGAN paper uses deeper, convolutional networks for high-resolution images.<br/>
+<h3 id="Miniaturized-WGAN-Model">Miniaturized WGAN Model<a class="anchor-link" href="#Miniaturized-WGAN-Model">¶</a></h3><p>The original paper uses deeper, convolutional networks for high-resolution images.<br/>
 Here we implemented a very small MLP-based WGAN:</p>
 <ul>
 <li><p><strong>Generator</strong></p>
@@ -9244,33 +9240,13 @@ under a consistent compute budget.</li>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=502df054">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c85e3818">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="6.-Group-member-contribution:-Detail-the-contributions-of-each-group-member.">6. Group member contribution: Detail the contributions of each group member.<a class="anchor-link" href="#6.-Group-member-contribution:-Detail-the-contributions-of-each-group-member.">¶</a></h3>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c80679cd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li><p><strong>Hernan Garcia Quijano</strong>: Project initialization and repository setup. Implemented the first minimum viable training and testing model. Responsible for the final project layout, structure, introduction and Section 1.</p>
-</li>
-<li><p><strong>Anna Monso</strong>: Developed Section 2 ("Model Architecture"), focusing on the analysis and synthesis of the Generator and Critic components.</p>
-</li>
-<li><p><strong>Judit Martín Sesé</strong>: Implemented the code and content for Section 3 ("The WGAN Training Mechanics"), including the training loop and loss functions. Also finalized Section 5 ("Discussion").</p>
-</li>
-<li><p><strong>Alberto Mateo</strong>: Developed Section 4 ("Minimal CPU-Ready Data"), implementing the MNIST experiment. Responsible for executing and validating the notebook cells and results.</p>
-</li>
-</ul>
+<h3 id="References">References<a class="anchor-link" href="#References">¶</a></h3><p>[ANONYMOUS PAPER]</p>
 </div>
 </div>
 </div>
